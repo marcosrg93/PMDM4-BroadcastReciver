@@ -6,21 +6,23 @@ package com.rubino.pmdm4_broadcastreciver.llamadas;
 public class Llamada {
 
     private long id;
-    private String numero,fecha;
+    private String numero,fecha,tipo;
 
     public Llamada() {
     }
 
-    public Llamada( String numero, String fecha) {
+    public Llamada( String numero, String fecha, String tipo) {
         this.id = 0;
         this.numero = numero;
         this.fecha = fecha;
+        this.tipo = tipo;
     }
 
-    public Llamada(long id, String numero, String fecha) {
+    public Llamada(long id, String numero, String fecha, String tipo) {
         this.id = id;
         this.numero = numero;
         this.fecha = fecha;
+        this.tipo = tipo;
     }
 
     public long getId() {
@@ -47,6 +49,14 @@ public class Llamada {
         this.fecha = fecha;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -57,7 +67,8 @@ public class Llamada {
 
         if (id != llamada.id) return false;
         if (numero != null ? !numero.equals(llamada.numero) : llamada.numero != null) return false;
-        return !(fecha != null ? !fecha.equals(llamada.fecha) : llamada.fecha != null);
+        if (fecha != null ? !fecha.equals(llamada.fecha) : llamada.fecha != null) return false;
+        return !(tipo != null ? !tipo.equals(llamada.tipo) : llamada.tipo != null);
 
     }
 
@@ -66,6 +77,7 @@ public class Llamada {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (numero != null ? numero.hashCode() : 0);
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
+        result = 31 * result + (tipo != null ? tipo.hashCode() : 0);
         return result;
     }
 
@@ -76,6 +88,7 @@ public class Llamada {
                 "id=" + id +
                 ", numero='" + numero + '\'' +
                 ", fecha='" + fecha + '\'' +
+                ", tipo='" + tipo + '\'' +
                 '}';
     }
 }

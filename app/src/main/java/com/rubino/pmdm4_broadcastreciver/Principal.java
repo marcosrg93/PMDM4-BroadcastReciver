@@ -147,13 +147,13 @@ public class Principal extends AppCompatActivity {
         String [] selectionX = {"miercoles"};
         Cursor cx = gc.getCursor(mSelectionClause,selectionX);
         String [] selectionJ = {"jueves"};
-        Cursor cj = gc.getCursor(mSelectionClause,selectionL);
+        Cursor cj = gc.getCursor(mSelectionClause,selectionJ);
         String [] selectionV= {"viernes"};
-        Cursor cv = gc.getCursor(mSelectionClause,selectionM);
+        Cursor cv = gc.getCursor(mSelectionClause,selectionV);
         String [] selectionS = {"sabado"};
-        Cursor cs = gc.getCursor(mSelectionClause,selectionX);
+        Cursor cs = gc.getCursor(mSelectionClause,selectionS);
         String [] selectionD = {"domingo"};
-        Cursor cd = gc.getCursor(mSelectionClause,selectionX);
+        Cursor cd = gc.getCursor(mSelectionClause,selectionD);
 
 
 

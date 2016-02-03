@@ -24,7 +24,8 @@ public class Ayudante extends SQLiteOpenHelper {
         sql = "create table " + Contrato.TablaLlamadas.TABLA + "( " +
                 Contrato.TablaLlamadas._ID + " integer primary key autoincrement, " +
                 Contrato.TablaLlamadas.NUMERO + " text, " +
-                Contrato.TablaLlamadas.FECHA + " text " +
+                Contrato.TablaLlamadas.FECHA + " text, " +
+                Contrato.TablaLlamadas.TIPO + " text " +
                 ")";
         Log.v("CREA LA BD: ", sql);
         db.execSQL(sql);

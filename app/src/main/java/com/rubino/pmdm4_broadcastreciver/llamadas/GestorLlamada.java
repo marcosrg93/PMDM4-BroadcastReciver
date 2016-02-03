@@ -36,6 +36,7 @@ public class GestorLlamada {
         ContentValues valores = new ContentValues();
         valores.put(Contrato.TablaLlamadas.NUMERO, p.getNumero());
         valores.put(Contrato.TablaLlamadas.FECHA, p.getFecha());
+        valores.put(Contrato.TablaLlamadas.TIPO, p.getTipo());
         long id = bd.insert(Contrato.TablaLlamadas.TABLA, null, valores);
         return id;
     }
@@ -56,6 +57,7 @@ public class GestorLlamada {
         ContentValues valores = new ContentValues();
         valores.put(Contrato.TablaLlamadas.NUMERO, r.getNumero());
         valores.put(Contrato.TablaLlamadas.FECHA, r.getFecha());
+        valores.put(Contrato.TablaLlamadas.TIPO, r.getTipo());
         String condicion = Contrato.TablaLlamadas._ID + " = ?";
         String[] argumentos = { r.getId() + "" };
         int cuenta = bd.update(Contrato.TablaLlamadas.TABLA, valores,
@@ -68,6 +70,7 @@ public class GestorLlamada {
         r.setId(c.getLong(c.getColumnIndex(Contrato.TablaLlamadas._ID)));
         r.setNumero(c.getString(c.getColumnIndex(Contrato.TablaLlamadas.NUMERO)));
         r.setFecha(c.getString(c.getColumnIndex(Contrato.TablaLlamadas.FECHA)));
+        r.setTipo(c.getString(c.getColumnIndex(Contrato.TablaLlamadas.TIPO)));
         return r;
     }
 
@@ -90,7 +93,7 @@ public class GestorLlamada {
     public Cursor getCursor(String condicion, String[] parametros) {
         Cursor cursor = bd.query(
                 Contrato.TablaLlamadas.TABLA, null, condicion, parametros, null,
-                null, Contrato.TablaLlamadas.NUMERO+", "+Contrato.TablaLlamadas.FECHA);
+                null, Contrato.TablaLlamadas.NUMERO+", "+Contrato.TablaLlamadas.FECHA+", "+Contrato.TablaLlamadas.TIPO);
         return cursor;
     }
 

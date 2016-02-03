@@ -23,7 +23,7 @@ public class ReceptorLlamada extends BroadcastReceiver {
     GestorLlamada gc;
     Llamada llamada;
     int duration = Toast.LENGTH_SHORT;
-
+    String tipo;
 
 
     @Override
@@ -35,7 +35,6 @@ public class ReceptorLlamada extends BroadcastReceiver {
             String state = extras.getString(TelephonyManager.EXTRA_STATE);
 
 
-
             Toast toast = Toast.makeText(context, "LLAMADA " + state, duration);
             toast.show();
 
@@ -44,43 +43,61 @@ public class ReceptorLlamada extends BroadcastReceiver {
                 String phoneNumber = extras
                         .getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
+                tipo = "Entrante";
                 gc.open();
-                llamada = new Llamada(phoneNumber,dia());
-                gc.insert(llamada);
+                llamada = new Llamada(phoneNumber, dia(),tipo);
+                if(state != TelephonyManager.EXTRA_STATE_RINGING) {
+                    gc.insert(llamada);
+                }
                 gc.close();
 
-                toast = Toast.makeText(context,llamada.toString(), duration);
+                toast = Toast.makeText(context, "Me esta llamando:" + llamada.toString(), duration);
                 toast.show();
+            } else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                String phoneNumber = extras
+                        .getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+
+                tipo = "Saliente";
+
+                gc.open();
+                llamada = new Llamada(phoneNumber, dia(),tipo);
+                if(phoneNumber != null){
+                gc.insert(llamada);
+                }
+                gc.close();
+
+                toast = Toast.makeText(context, "Llamando a:" + llamada.toString(), duration);
+                toast.show();
+
             }
         }
     }
 
 
-
-    private String dia (){
-        String dia ="";
+    private String dia() {
+        String dia = "";
 
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
 
 
-        switch (day){
-            case 0:
-                return dia="domingo";
+        switch (day) {
             case 1:
-                return dia="lunes";
+                return dia = "domingo";
             case 2:
-                return dia="martes";
+                return dia = "lunes";
             case 3:
-                return dia="miercoles";
+                return dia = "martes";
             case 4:
-                return dia="jueves";
+                return dia = "miercoles";
             case 5:
-                return dia="viernes";
+                return dia = "jueves";
             case 6:
-                return dia="sabada";
+                return dia = "viernes";
+            case 7:
+                return dia = "sabada";
             default:
-                return dia="Hoy no es tu día";
+                return dia = "Hoy no es tu día";
         }
     }
 

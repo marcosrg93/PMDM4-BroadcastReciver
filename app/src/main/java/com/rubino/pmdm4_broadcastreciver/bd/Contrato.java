@@ -14,6 +14,7 @@ public class Contrato{
         public static final String TABLA = "llamadas";
         public static final String NUMERO = "numero";
         public static final String FECHA = "fecha";
+        public static final String TIPO= "tipo";
 
     }
 

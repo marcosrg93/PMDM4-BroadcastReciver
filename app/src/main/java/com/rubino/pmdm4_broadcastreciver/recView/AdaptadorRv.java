@@ -37,7 +37,7 @@ public class AdaptadorRv extends RecyclerView.Adapter<AdaptadorRv.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int pos) {
         datos.moveToPosition(pos);
-        Llamada item = new Llamada(datos.getString(1),datos.getString(2));
+        Llamada item = new Llamada(datos.getString(1),datos.getString(2),datos.getString(3));
 
         viewHolder.bind(item);
     }
@@ -65,17 +65,20 @@ public class AdaptadorRv extends RecyclerView.Adapter<AdaptadorRv.ViewHolder>
 
         private TextView tvNombre;
         private TextView tvEmail;
+        private TextView tvtipo;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             tvNombre = (TextView)itemView.findViewById(R.id.LblNombre);
             tvEmail = (TextView)itemView.findViewById(R.id.LblEmail);
+            tvtipo = (TextView)itemView.findViewById(R.id.LblTipo);
         }
 
         public void bind(Llamada t) {
             tvNombre.setText(t.getNumero());
             tvEmail.setText(t.getFecha());
+            tvtipo.setText(t.getTipo());
         }
     }
 

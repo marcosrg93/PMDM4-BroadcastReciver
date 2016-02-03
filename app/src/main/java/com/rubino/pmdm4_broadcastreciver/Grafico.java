@@ -10,14 +10,14 @@ import android.webkit.WebView;
 public class Grafico extends AppCompatActivity {
 
     private WebView webView;
-    private int[] llamadasN = new int[]{9,14,20,13,17};
+    private int[] llamadasN = new int[]{9, 14, 20, 13, 17};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico);
         setTitle("Estadisticas de llamadas");
-        webView = (WebView)findViewById(R.id.webView);
+        webView = (WebView) findViewById(R.id.webView);
 
         final Intent i = getIntent();
         llamadasN = i.getExtras().getIntArray("Cursor");
@@ -31,9 +31,8 @@ public class Grafico extends AppCompatActivity {
     }
 
 
-
     @JavascriptInterface
-    public int enviarDia(int x){
+    public int enviarDia(int x) {
         return llamadasN[x];
     }
 }
